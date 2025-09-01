@@ -14,6 +14,15 @@ import PasswordChecker from "./PasswordChecker";
 import SMSDetector from "./SMSDetector";
 import ChildSafety from "./ChildSafety";
 
+// Add these new icon imports
+import SecurityIcon from "@mui/icons-material/Security";
+import ReportIcon from "@mui/icons-material/Report";
+import PolicyIcon from "@mui/icons-material/Policy";
+import PublicIcon from "@mui/icons-material/Public";
+import PhoneIcon from "@mui/icons-material/Phone";
+import EmailIcon from "@mui/icons-material/Email";
+import ArticleIcon from "@mui/icons-material/Article";
+import CampaignIcon from "@mui/icons-material/Campaign";
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -148,6 +157,21 @@ const StyledDialog = styled(Dialog)({
   },
 });
 
+const LinkCard = styled(Card)({
+  height: "100%",
+  background: "linear-gradient(145deg, rgba(26,32,54,0.95) 0%, rgba(30,37,61,0.95) 100%)",
+  borderRadius: 16,
+  overflow: "hidden",
+  position: "relative",
+  transition: "all 0.4s ease",
+  border: "1px solid rgba(108, 92, 231, 0.2)",
+  "&:hover": {
+    transform: "translateY(-8px) scale(1.02)",
+    border: "1px solid rgba(108, 92, 231, 0.5)",
+    boxShadow: "0 10px 20px rgba(108, 92, 231, 0.3)",
+  },
+});
+
 function BentoGrid() {
   const [open, setOpen] = useState(false);
   const [selectedImg, setSelectedImg] = useState(null);
@@ -211,6 +235,66 @@ function BentoGrid() {
     { img: "imgs/tip14.jpg" },
     { img: "imgs/tip15.jpg" },
     { img: "imgs/tip16.jpg" }
+  ];
+
+  // Useful links data with icons
+  const usefulLinks = [
+    {
+      title: "Goa Cyber Crime",
+      description: "Official Goa Cyber Crime portal for reporting incidents",
+      icon: <SecurityIcon sx={{ fontSize: 40 }} />,
+      url: "https://citizen.goapolice.gov.in/web/guest/cyber-crime-police-station",
+      color: "#6c5ce7"
+    },
+    {
+      title: "Report Cyber Crime",
+      description: "File a complaint with Indian Cyber Crime Coordination Centre",
+      icon: <ReportIcon sx={{ fontSize: 40 }} />,
+      url: "https://www.cybercrime.gov.in/Webform/Crime_AuthoLogin.aspx",
+      color: "#e74c3c"
+    },
+    {
+      title: "Cyber Safety Tips",
+      description: "Government guidelines for online safety",
+      icon: <PolicyIcon sx={{ fontSize: 40 }} />,
+      url: "https://www.cert-in.org.in/",
+      color: "#3498db"
+    },
+    {
+      title: "National Cyber Security",
+      description: "India's national cybersecurity organization",
+      icon: <PublicIcon sx={{ fontSize: 40 }} />,
+      url: "https://www.ncsai.in/",
+      color: "#2ecc71"
+    },
+    {
+      title: "Cyber Crime Helpline",
+      description: "National cyber crime helpline: 1930",
+      icon: <PhoneIcon sx={{ fontSize: 40 }} />,
+      url: "tel:1930",
+      color: "#f39c12"
+    },
+    {
+      title: "Email Complaints",
+      description: "Email for cyber crime complaints",
+      icon: <EmailIcon sx={{ fontSize: 40 }} />,
+      url: "mailto:cybercrime@goa.gov.in",
+      color: "#9b59b6"
+    },
+    {
+      title: "Cyber Awareness",
+      description: "Educational resources on cyber security",
+      icon: <ArticleIcon sx={{ fontSize: 40 }} />,
+      url: "https://cybercrime.gov.in/Webform/CyberAware.aspx",
+      color: "#1abc9c"
+    },
+    {
+      title: "Awareness Campaigns",
+      description: "Latest cyber security awareness initiatives",
+      icon: <CampaignIcon sx={{ fontSize: 40 }} />,
+      url: "https://www.mygov.in/staysafeonline",
+      color: "#d35400"
+    }
   ];
 
   // Shared slider styles to make center big & sides blended
@@ -806,17 +890,97 @@ function BentoGrid() {
             )}
           </Box>
         </StyledDialog>
+
+        {/* Useful Links Section */}
+        <CenteredSection sx={{ mt: 10 }}>
+          <SectionHeader
+            id="links"
+            variant="h3"
+            sx={{ fontWeight: 800, color: "warning.main" }}
+          >
+            Useful Links
+          </SectionHeader>
+          <Typography
+            variant="h6"
+            color="text.secondary"
+            sx={{ maxWidth: 600, mb: 4 }}
+          >
+            Important resources for cyber security and reporting
+          </Typography>
+        </CenteredSection>
+
+        <Box
+          sx={{
+            width: "100%",
+            maxWidth: 1200,
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(4, 1fr)",
+            },
+            gap: 3,
+            mb: 10,
+          }}
+        >
+          {usefulLinks.map((link, index) => (
+            <a
+              key={index}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <LinkCard
+                sx={{
+                  "&:hover": {
+                    boxShadow: `0 10px 20px ${link.color}40`,
+                    border: `1px solid ${link.color}`,
+                  },
+                }}
+              >
+                <CardContent
+                  sx={{
+                    p: 3,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textAlign: "center",
+                    height: "100%",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      color: link.color,
+                      mb: 2,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {link.icon}
+                  </Box>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: 700, mb: 1, color: "white" }}
+                  >
+                    {link.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ flexGrow: 1 }}
+                  >
+                    {link.description}
+                  </Typography>
+                </CardContent>
+              </LinkCard>
+            </a>
+          ))}
+        </Box>
       </Box>
-      
-
-      
     </>
-    
-
   );
-  
-  
-  
 }
 
 export default BentoGrid;
