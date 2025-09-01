@@ -774,42 +774,7 @@ function BentoGrid() {
             ))}
           </Swiper>
         </Box>
-
-        <CenteredSection sx={{ mt: 10 }}>
-  <SectionHeader
-    id="kids"
-    variant="h3"
-    sx={{ 
-      fontWeight: 800, 
-      color: "secondary.main",
-      background: "linear-gradient(45deg, #FF9E80 30%, #FF6D00 90%)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-    }}
-  >
-    Cyber Safety for Kids
-  </SectionHeader>
-  <Typography
-    variant="h6"
-    color="text.secondary"
-    sx={{ maxWidth: 600, mb: 4 }}
-  >
-    Fun games and activities to learn about online safety!
-  </Typography>
-</CenteredSection>
-
-{/* Children's Cybersecurity Section */}
-<Box sx={{ 
-  width: "100%", 
-  maxWidth: 1400, 
-  mb: "5rem",
-  background: "linear-gradient(145deg, rgba(255,224,178,0.1) 0%, rgba(255,204,128,0.1) 100%)",
-  borderRadius: 4,
-  p: 4,
-  border: "2px solid rgba(255, 167, 38, 0.3)"
-}}>
-  <ChildSafety />
-</Box>
+        
 
         {/* Dialog (popup for image) */}
         <StyledDialog open={open} onClose={handleClose} maxWidth="md">
