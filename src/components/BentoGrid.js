@@ -275,10 +275,10 @@ function BentoGrid() {
       color: "#f39c12"
     },
     {
-      title: "Email Complaints",
+      title: "Register Complaints",
       description: "Email for cyber crime complaints",
       icon: <EmailIcon sx={{ fontSize: 40 }} />,
-      url: "mailto:cybercrime@goa.gov.in",
+      url: "https://cybercrime.gov.in/Webform/Index.aspx",
       color: "#9b59b6"
     },
     {
@@ -535,6 +535,12 @@ function BentoGrid() {
                 desc: "The use of the internet, email, or social media to harass, intimidate, or monitor someone repeatedly.",
                 img: "imgs/cyberstalking.png", 
                 link: "https://www.esafety.gov.au/key-topics/staying-safe/cyberstalking#:~:text=Real%20stories-,What%20is%20cyberstalking?,and%20off%20within%20their%20home." 
+              },
+              { 
+                title: "Cyberbullying", 
+                desc: "The use of technology to harass, threaten, embarrass, or target another person.",
+                img: "imgs/cyberbullying.png", 
+                link: "https://www.stopbullying.gov/cyberbullying/what-is-it" 
               },
             ].map((scam, idx) => (
               <SwiperSlide key={idx}>
