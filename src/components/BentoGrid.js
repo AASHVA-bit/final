@@ -12,7 +12,10 @@ import GlobalStyles from "@mui/material/GlobalStyles";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import PasswordChecker from "./PasswordChecker";
 import SMSDetector from "./SMSDetector";
+import SeniorSafety from "./SeniorSafety";
 import ChildSafety from "./ChildSafety";
+
+
 
 // Add these new icon imports
 import SecurityIcon from "@mui/icons-material/Security";
@@ -23,6 +26,7 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import ArticleIcon from "@mui/icons-material/Article";
 import CampaignIcon from "@mui/icons-material/Campaign";
+import ElderlyIcon from "@mui/icons-material/Elderly";
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -542,6 +546,18 @@ function BentoGrid() {
                 img: "imgs/cyberbullying.png", 
                 link: "https://www.stopbullying.gov/cyberbullying/what-is-it" 
               },
+              { 
+                title: "Cybergrooming", 
+                desc: "Cyber grooming is when someone (often an adult) befriends a child online and builds an emotional connection with future intentions of sexual abuse.",
+                img: "imgs/cybergrooming.jpg", 
+                link: "https://www.childsafenet.org/cyber-grooming" 
+              },
+               { 
+                title: "Vishing Scam", 
+                desc: "voice phishing, is a fraudulent phone call or voice message designed to trick people into revealing sensitive information, such as bank details, login credentials, or personal data",
+                img: "imgs/vishing.png", 
+                link: "https://www.sainthelenabank.com/cybercrime-and-fraud-information/vishing/" 
+              },
             ].map((scam, idx) => (
               <SwiperSlide key={idx}>
                 <a href={scam.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
@@ -741,15 +757,16 @@ function BentoGrid() {
 </StyledDialog>
 
 
-{/* Password Checker and SMS Detector Section */}
+{/* Password Checker and SMS Detector Section - REMOVE THE DUPLICATE */}
+
 <Box
   sx={{
     gridColumn: "1 / -1",
     display: "grid",
     gridTemplateColumns: {
-      xs: "1fr",   // mobile: stack vertically
-      sm: "1fr",   // small tablets: still stack
-      md: "1fr 1fr" // medium and up: side by side
+      xs: "1fr",
+      sm: "1fr",
+      md: "1fr 1fr"
     },
     gap: 2,
     mt: 3,
@@ -757,10 +774,10 @@ function BentoGrid() {
 >
   <PasswordChecker />
   <SMSDetector />
+  <SeniorSafety /> {/* Add this line */}
+  <ChildSafety />
+  
 </Box>
-
-
-
 
         {/* Tips Section */}
 <CenteredSection sx={{ mt: 10 }}>
@@ -985,6 +1002,7 @@ function BentoGrid() {
           ))}
         </Box>
       </Box>
+      
     </>
   );
 }

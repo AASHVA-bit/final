@@ -1,4 +1,3 @@
-// file: src/components/ChildSafety.js
 import React, { useState } from "react";
 import {
   Box,
@@ -27,14 +26,16 @@ import {
   Security,
   Help,
   Close,
+  VolunteerActivism,
   Shield,
   Report,
   CheckCircle,
-  ChildCare
+   ChildCare // 👶 for Child Safety
 } from "@mui/icons-material";
+import ElderlyIcon from "@mui/icons-material/Elderly";
 import { keyframes, styled } from "@mui/material/styles";
 
-// Animations
+// Animation keyframes
 const pulse = keyframes`
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
@@ -48,15 +49,15 @@ const float = keyframes`
 `;
 
 const glow = keyframes`
-  0% { box-shadow: 0 0 5px rgba(25, 118, 210, 0.5); }
-  50% { box-shadow: 0 0 20px rgba(25, 118, 210, 0.8); }
-  100% { box-shadow: 0 0 5px rgba(25, 118, 210, 0.5); }
+  0% { box-shadow: 0 0 5px rgba(59, 89, 152, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(59, 89, 152, 0.8); }
+  100% { box-shadow: 0 0 5px rgba(59, 89, 152, 0.5); }
 `;
 
 // Styled components
-const ChildCard = styled(Card)({
+const SeniorCard = styled(Card)({
   background:
-    "linear-gradient(145deg, rgba(25, 118, 210, 0.95) 0%, rgba(33, 150, 243, 0.95) 100%)",
+    "linear-gradient(145deg, rgba(59, 89, 152, 0.95) 0%, rgba(66, 103, 178, 0.95) 100%)",
   borderRadius: 16,
   border: "2px solid rgba(255, 255, 255, 0.3)",
   color: "white",
@@ -67,6 +68,15 @@ const ChildCard = styled(Card)({
   },
   "& .MuiTypography-body1": {
     fontSize: "1.1rem"
+  },
+  "& .MuiButton-root": {
+    fontSize: "1.1rem",
+    padding: "10px 20px",
+    borderRadius: 10,
+    transition: "all 0.3s ease",
+    "&:hover": {
+      animation: `${pulse} 0.5s ease-in-out`
+    }
   }
 });
 
@@ -85,63 +95,71 @@ const AnimatedIcon = styled(Box)({
   justifyContent: "center"
 });
 
-function ChildSafetyContent() {
-  const [dangerDialogOpen, setDangerDialogOpen] = useState(false);
+function SeniorSafetyContent() {
+  const [helpDialogOpen, setHelpDialogOpen] = useState(false);
   const [preventionDialogOpen, setPreventionDialogOpen] = useState(false);
 
-  const onlineDangers = [
+  const commonScams = [
     {
-      title: "Cyberbullying",
+      title: "Tech Support Scams",
       description:
-        "Harassment through messages, social media, or online games that can harm emotional well-being.",
+        "Fake calls claiming your computer has viruses and requesting remote access or payment.",
       icon: <Warning color="error" />
     },
     {
-      title: "Inappropriate Content",
+      title: "Grandparent Scams",
       description:
-        "Accidental or intentional exposure to violent, harmful, or adult content online.",
-      icon: <Report color="warning" />
+        "Callers pretending to be grandchildren in emergency situations needing money immediately.",
+      icon: <VolunteerActivism color="warning" />
     },
     {
-      title: "Stranger Danger",
+      title: "Lottery/Prize Scams",
       description:
-        "Strangers pretending to be friends in chatrooms, games, or social platforms.",
-      icon: <Security color="error" />
-    },
-    {
-      title: "Gaming Scams",
-      description:
-        "Fake offers in online games that ask for passwords, money, or personal details.",
+        "Notifications that you've won a prize but need to pay fees or taxes to claim it.",
       icon: <Report color="info" />
+    },
+    {
+      title: "Romance Scams",
+      description:
+        "Online relationships where the person eventually asks for money for emergencies or travel.",
+      icon: <VolunteerActivism color="secondary" />
+    },
+    {
+      title: "Government Impersonation",
+      description:
+        "Callers pretending to be from government agencies demanding immediate payment or personal information.",
+      icon: <Security color="error" />
     }
   ];
 
   const preventionTips = [
-    "Never share passwords, addresses, or phone numbers online",
-    "Tell parents or teachers if you feel uncomfortable about something online",
-    "Use parental control and privacy settings on devices and apps",
-    "Do not respond to strangers in games or chats",
-    "Think before posting anything — once online, it can stay forever",
-    "Balance screen time with offline activities",
-    "Report and block anyone who sends harmful or rude messages"
+    "Never share personal information, passwords, or banking details with unknown callers",
+    "Verify any emergency situation by calling family members directly using known numbers",
+    "Remember: legitimate organizations never demand immediate payment via gift cards or wire transfers",
+    "If something sounds too good to be true, it probably is",
+    "Register your number on the National Do Not Call Registry",
+    "Set up call screening features on your phone",
+    "Talk to family members before making large financial decisions",
+    "Keep your computer and phone software updated regularly"
   ];
 
   return (
-    <ChildCard>
+    <SeniorCard>
       <CardContent sx={{ p: 3 }}>
         <Box display="flex" alignItems="center" mb={2}>
-          <AnimatedIcon>
-            <ChildCare sx={{ fontSize: 32, mr: 1.5 }} />
-          </AnimatedIcon>
-          <Typography variant="h5" gutterBottom>
-            Child Safety Assistant
-          </Typography>
-        </Box>
+  <AnimatedIcon>
+    <ElderlyIcon sx={{ fontSize: 36, mr: 1.5, color: "gold" }} />
+  </AnimatedIcon>
+  <Typography variant="h5" gutterBottom>
+    Senior Safety Assistant
+  </Typography>
+</Box>
+
 
         <Fade in={true} timeout={1500}>
           <Typography variant="body1" paragraph>
-            Guidance for children and students to stay safe while using the
-            internet, social media, and online games.
+            Specialized information and resources to help seniors stay safe from
+            online threats and scams.
           </Typography>
         </Fade>
 
@@ -151,10 +169,10 @@ function ChildSafetyContent() {
               variant="contained"
               color="primary"
               startIcon={<Help />}
-              onClick={() => setDangerDialogOpen(true)}
+              onClick={() => setHelpDialogOpen(true)}
               sx={{ mb: 2 }}
             >
-              Online Dangers
+              Common Scams
             </BigButton>
           </Slide>
 
@@ -175,9 +193,9 @@ function ChildSafetyContent() {
               variant="contained"
               color="success"
               startIcon={<Phone />}
-              onClick={() => window.open("tel:1098")}
+              onClick={() => window.open("tel:1930")}
             >
-              Emergency Helpline: 1098
+              Emergency Helpline: 1930
             </BigButton>
           </Slide>
         </Box>
@@ -195,13 +213,11 @@ function ChildSafetyContent() {
               Important Contacts:
             </Typography>
             <Typography variant="body2">
-              • Child Helpline: <strong>1098</strong>
-              <br />
               • National Cyber Crime Helpline: <strong>1930</strong>
               <br />
               • Police: <strong>100</strong>
               <br />
-              • Trusted Parent/Teacher
+              • Senior Citizen Helpline: <strong>1090</strong>
               <br />
               • Cyber Crime Portal: <strong>cybercrime.gov.in</strong>
             </Typography>
@@ -209,10 +225,10 @@ function ChildSafetyContent() {
         </Fade>
       </CardContent>
 
-      {/* Online Dangers Dialog */}
+      {/* Common Scams Dialog */}
       <Dialog
-        open={dangerDialogOpen}
-        onClose={() => setDangerDialogOpen(false)}
+        open={helpDialogOpen}
+        onClose={() => setHelpDialogOpen(false)}
         maxWidth="md"
         fullWidth
         TransitionComponent={Fade}
@@ -220,10 +236,10 @@ function ChildSafetyContent() {
         <DialogTitle>
           <Box display="flex" alignItems="center">
             <Warning color="warning" sx={{ mr: 1 }} />
-            Online Dangers for Children
+            Common Scams Targeting Seniors
             <IconButton
               aria-label="close"
-              onClick={() => setDangerDialogOpen(false)}
+              onClick={() => setHelpDialogOpen(false)}
               sx={{ position: "absolute", right: 8, top: 8 }}
             >
               <Close />
@@ -232,29 +248,30 @@ function ChildSafetyContent() {
         </DialogTitle>
         <DialogContent dividers>
           <List>
-            {onlineDangers.map((danger, index) => (
+            {commonScams.map((scam, index) => (
               <React.Fragment key={index}>
                 <ListItem>
-                  <ListItemIcon>{danger.icon}</ListItemIcon>
+                  <ListItemIcon>{scam.icon}</ListItemIcon>
                   <ListItemText
-                    primary={danger.title}
-                    secondary={danger.description}
+                    primary={scam.title}
+                    secondary={scam.description}
                     primaryTypographyProps={{ fontWeight: 600 }}
                   />
                 </ListItem>
-                {index < onlineDangers.length - 1 && (
+                {index < commonScams.length - 1 && (
                   <Divider variant="inset" />
                 )}
               </React.Fragment>
             ))}
           </List>
-          <Alert severity="warning" sx={{ mt: 2 }}>
-            <strong>Be smart:</strong> If something online makes you feel scared
-            or confused, stop and tell a trusted adult immediately.
+          <Alert severity="info" sx={{ mt: 2 }}>
+            <strong>Remember:</strong> Always verify unexpected requests for
+            money or information by contacting the organization directly using
+            official phone numbers from their website.
           </Alert>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDangerDialogOpen(false)}>Close</Button>
+          <Button onClick={() => setHelpDialogOpen(false)}>Close</Button>
         </DialogActions>
       </Dialog>
 
@@ -269,7 +286,7 @@ function ChildSafetyContent() {
         <DialogTitle>
           <Box display="flex" alignItems="center">
             <Shield color="success" sx={{ mr: 1 }} />
-            Prevention Tips for Children
+            Prevention Tips for Seniors
             <IconButton
               aria-label="close"
               onClick={() => setPreventionDialogOpen(false)}
@@ -296,32 +313,33 @@ function ChildSafetyContent() {
             ))}
           </List>
           <Alert severity="success" sx={{ mt: 2 }}>
-            <strong>Stay safe:</strong> Always talk openly with parents or
-            teachers about your online experiences.
+            <strong>Stay protected:</strong> Share this information with friends
+            and family. Awareness is the best defense against scams.
           </Alert>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setPreventionDialogOpen(false)}>Close</Button>
         </DialogActions>
       </Dialog>
-    </ChildCard>
+    </SeniorCard>
   );
 }
 
 // Wrapper with button to open the card
-export default function ChildSafety() {
+export default function SeniorSafety() {
   const [open, setOpen] = useState(false);
 
   return (
     <Box textAlign="center" mt={5}>
       <Button
-        variant="contained"
-        size="large"
-        onClick={() => setOpen(true)}
-        startIcon={<ChildCare />}
-      >
-         Child Safety Assistant
-      </Button>
+  variant="contained"
+  size="large"
+  startIcon={<ElderlyIcon />}   // 👴 Senior citizen icon
+  onClick={() => setOpen(true)}
+>
+  Senior Safety Assistant
+</Button>
+
 
       <Dialog
         open={open}
@@ -331,7 +349,7 @@ export default function ChildSafety() {
         TransitionComponent={Zoom}
       >
         <DialogContent sx={{ p: 0 }}>
-          <ChildSafetyContent />
+          <SeniorSafetyContent />
         </DialogContent>
       </Dialog>
     </Box>
