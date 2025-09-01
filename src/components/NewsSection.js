@@ -9,6 +9,7 @@ import CardActionArea from "@mui/material/CardActionArea";
 import Typography from "@mui/material/Typography";
 import LinearProgress from "@mui/material/LinearProgress";
 
+// News Section Component
 function NewsSection() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,14 +18,9 @@ function NewsSection() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        // ✅ Make sure you have set this in Vercel dashboard:
-        // KEY must start with REACT_APP_ (for CRA) or VITE_ (for Vite)
         const apiKey = process.env.REACT_APP_SERPAPI_KEY;
 
-        if (!apiKey) {
-          throw new Error("API key is missing! Check your Vercel env settings.");
-        }
-
+        // Build query object
         const query = {
           api_key: apiKey,
           engine: "google_news",
@@ -34,21 +30,23 @@ function NewsSection() {
           hl: "en",
         };
 
+        // Convert query object to query string
         const params = new URLSearchParams(query).toString();
         const targetUrl = `https://serpapi.com/search.json?${params}`;
 
-        // ⚡️ Direct call (SerpAPI supports CORS)
-        const response = await fetch(targetUrl);
+        // Wrap with proxy
+        const corsProxy = "https://api.allorigins.win/raw?url=";
+        const response = await fetch(corsProxy + encodeURIComponent(targetUrl));
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
-        const limitedNews = (data.news_results || []).slice(0, 15);
+        const limitedNews = (data.news_results || []).slice(0, 15); // limit to 15 articles
         setNews(limitedNews);
-      } catch (err) {
-        console.error("Failed to fetch news:", err);
+      } catch (error) {
+        console.error("Failed to fetch news:", error);
         setError("Failed to load news. Please try again later.");
       } finally {
         setLoading(false);
