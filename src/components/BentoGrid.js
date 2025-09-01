@@ -26,7 +26,7 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import ArticleIcon from "@mui/icons-material/Article";
 import CampaignIcon from "@mui/icons-material/Campaign";
-import ElderlyIcon from "@mui/icons-material/Elderly";
+
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
