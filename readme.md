@@ -60,7 +60,6 @@ A modern, interactive web application to promote cyber security awareness, provi
 >
  ### ChatBot
 > ![Chatbot](public/imgs/bot.png)
-> _...add more screenshots as needed for each section._
 
 ---
 

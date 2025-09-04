@@ -74,6 +74,7 @@ function Navbar() {
       boxShadow: "0 0 2px rgba(108,92,231,0.3)", // subtle purple glow
       backdropFilter: "blur(8px)",        // smooth blend
     }}
+    onClick={() => window.location.reload()}
   />
 </Box>
 
