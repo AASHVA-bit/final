@@ -37,9 +37,6 @@ A modern, interactive web application to promote cyber security awareness, provi
 
 > _Below are screenshots of the main sections. All images are in `public/imgs/`._
 >
-> ### Hero Section
-> ![Hero Section](public/imgs/hero.png)
->
 > ### Cyber Attacks
 > ![Cyber Attacks](public/imgs/cyberattacksec.png)
 >
